@@ -69,6 +69,7 @@ SELECT * FROM funcionario WHERE salario BETWEEN 3000 AND 4000;
 SELECT * FROM funcionario WHERE nome LIKE 'M%';
 SELECT * FROM funcionario WHERE nome LIKE '%A%';
 SELECT * FROM funcionario WHERE nome NOT LIKE 'M%';
+SELECT CONCAT('O funcionario ', nome, ' mora na ', endereco, ' número ', numero) AS 'Dados' FROM funcionario WHERE codigo = 1;
 
 ALTER TABLE funcionario ADD setor VARCHAR(10) NOT NULL;
 ALTER TABLE funcionario MODIFY sexo CHAR(1) NOT NULL;
@@ -80,6 +81,8 @@ UPDATE funcionario SET setor = 'Gerente' WHERE codigo = 3;
 DELETE FROM funcionario WHERE codigo > 3;
 
 SELECT funcionario.nome, cidade.nome FROM funcionario JOIN cidade ON funcionario.codigo_cidade = cidade.codigo;
+SELECT cidade.nome, AVG(funcionario.salario) FROM cidade JOIN funcionario ON cidade.codigo = funcionario.codigo_cidade;
 SELECT AVG(salario) FROM funcionario;
 SELECT sexo, AVG(salario) AS 'Média salarial' FROM funcionario GROUP BY sexo;
+SELECT AVG(salario) FROM funcionario WHERE codigo > 2;
 SELECT SUM(salario) FROM funcionario;
